@@ -7,9 +7,7 @@ use Exception;
 /**
  * 原生php的视图处理类
  *
- * @package    Base
- * @category   Base
- * @author     YwiSax
+ * @package tourze\View
  */
 class View extends Base implements ViewInterface
 {

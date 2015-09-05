@@ -3,8 +3,8 @@
 namespace tourze\View;
 
 use Exception;
-use tourze\Base\Debug;
 use tourze\Base\Helper\Arr;
+use tourze\Base\Object;
 use tourze\View\Exception\ViewException;
 
 /**
@@ -12,7 +12,7 @@ use tourze\View\Exception\ViewException;
  *
  * @package tourze\View
  */
-abstract class Base
+abstract class Base extends Object
 {
 
     /**
@@ -50,8 +50,11 @@ abstract class Base
      */
     public static function factory($file = null, array $data = null)
     {
-        $class = get_called_class();
-        return new $class($file, $data);
+        $class = self::className();
+        return new $class([
+            '_file' => $file,
+            '_data' => $data,
+        ]);
     }
 
     /**
@@ -111,23 +114,15 @@ abstract class Base
     protected $_data = [];
 
     /**
-     * 构造函数
-     *
-     * @param  string $file 视图文件名
-     * @param  array  $data 数据变量
-     * @throws ViewException
-     * @uses   View::setFilename
+     * {@inheritdoc}
      */
-    public function __construct($file = null, array $data = null)
+    public function init()
     {
-        if (null !== $file)
-        {
-            $this->setFilename($file);
-        }
+        parent::init();
 
-        if (null !== $data)
+        if (null !== $this->_file)
         {
-            $this->_data = Arr::merge($this->_data, $data);
+            $this->setFilename($this->_file);
         }
     }
 
@@ -213,7 +208,7 @@ abstract class Base
         }
         catch (Exception $e)
         {
-            return $errorResponse = Debug::debugger()->handleException($e);
+            return $e->getMessage();
         }
     }
 

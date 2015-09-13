@@ -2,7 +2,7 @@
   "name": "tourze/view",
   "description": "途者PHP框架-视图部分",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "tourze",

@@ -48,7 +48,7 @@ abstract class Base extends Object
      * @param array  $data 视图数据
      * @return Base
      */
-    public static function factory($file = null, array $data = null)
+    public static function factory($file = null, $data = [])
     {
         $class = self::className();
         return new $class([

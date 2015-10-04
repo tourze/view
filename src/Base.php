@@ -3,6 +3,7 @@
 namespace tourze\View;
 
 use Exception;
+use tourze\Base\Debug;
 use tourze\Base\Helper\Arr;
 use tourze\Base\Object;
 use tourze\View\Exception\ViewException;
@@ -208,7 +209,7 @@ abstract class Base extends Object
         }
         catch (Exception $e)
         {
-            return $e->getMessage();
+            return Debug::debugger()->handleException($e);
         }
     }
 

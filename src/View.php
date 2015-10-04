@@ -14,14 +14,7 @@ class View extends Base implements ViewInterface
 {
 
     /**
-     * 获取视图的最终输入
-     *
-     *     $output = View::capture($file, $data);
-     *
-     * @param  string $viewFilename 文件名
-     * @param  array  $viewData     变量
-     * @return string
-     * @throws Exception
+     * {@inheritdoc}
      */
     protected function capture($viewFilename, array $viewData)
     {
